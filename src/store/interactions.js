@@ -31,7 +31,7 @@ export const loadWeb3 = async (dispatch) => {
     dispatch(web3Loaded(web3))
     return web3
   } else {
-    window.alert('Please install MetaMask')
+    window.alert('loadWeb3: Please install MetaMask')
     window.location.assign("https://metamask.io/")
   }
 }
@@ -49,7 +49,7 @@ export const loadToken = async (web3, networkId, dispatch) => {
     dispatch(tokenLoaded(token))
     return token
   } catch (error) {
-    console.log('Contract not deployed to the current network. Please select another network with Metamask.')
+    console.log('loadToken: Contract not deployed to the current network. Please select another network with Metamask.')
     return null
   }
 }
@@ -60,7 +60,7 @@ export const loadExchange = async (web3, networkId, dispatch) => {
     dispatch(exchangeLoaded(exchange))
     return exchange
   } catch (error) {
-    console.log('Contract not deployed to the current network. Please select another network with Metamask.')
+    console.log('loadExchange: Contract not deployed to the current network. Please select another network with Metamask.')
     return null
   }
 }
@@ -117,7 +117,7 @@ export const cancelOrder = (dispatch, exchange, order, account) => {
   })
   .on('error', (error) => {
     console.log(error)
-    window.alert('There was an error!')
+    window.alert('cancelOrder: There was an error!')
   })
 }
 
@@ -128,7 +128,7 @@ export const fillOrder = (dispatch, exchange, order, account) => {
   })
   .on('error', (error) => {
     console.log(error)
-    window.alert('There was an error!')
+    window.alert('fillOrder: There was an error!')
   })
 }
 
@@ -153,7 +153,7 @@ export const loadBalances = async (dispatch, web3, exchange, token, account) => 
       // Trigger all balances loaded
       dispatch(balancesLoaded())
     } else {
-      window.alert('Please login with MetaMask')
+      window.alert('loadBalances: Please login with MetaMask')
     }
 }
 
@@ -164,7 +164,7 @@ export const depositEther = (dispatch, exchange, web3, amount, account) => {
   })
   .on('error',(error) => {
     console.error(error)
-    window.alert(`There was an error!`)
+    window.alert('depositEther: There was an error!')
   })
 }
 
@@ -175,7 +175,7 @@ export const withdrawEther = (dispatch, exchange, web3, amount, account) => {
   })
   .on('error',(error) => {
     console.error(error)
-    window.alert(`There was an error!`)
+    window.alert('depositEther: There was an error!')
   })
 }
 
@@ -190,7 +190,7 @@ export const depositToken = (dispatch, exchange, web3, token, amount, account) =
     })
     .on('error',(error) => {
       console.error(error)
-      window.alert(`There was an error!`)
+      window.alert('depositToken: There was an error!')
     })
   })
 }
@@ -202,7 +202,7 @@ export const withdrawToken = (dispatch, exchange, web3, token, amount, account) 
   })
   .on('error',(error) => {
     console.error(error)
-    window.alert(`There was an error!`)
+    window.alert('withdrawToken: There was an error!')
   })
 }
 
@@ -218,7 +218,7 @@ export const makeBuyOrder = (dispatch, exchange, token, web3, order, account) =>
   })
   .on('error',(error) => {
     console.error(error)
-    window.alert(`There was an error!`)
+    window.alert('makeBuyOrder: There was an error!')
   })
 }
 
@@ -234,6 +234,6 @@ export const makeSellOrder = (dispatch, exchange, token, web3, order, account) =
   })
   .on('error',(error) => {
     console.error(error)
-    window.alert(`There was an error!`)
+    window.alert('makeSellOrder: There was an error!')
   })
 }
