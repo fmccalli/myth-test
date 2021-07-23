@@ -28,6 +28,7 @@ import { ETHER_ADDRESS } from '../helpers'
 export const loadWeb3 = async (dispatch) => {
   if(typeof window.ethereum!=='undefined'){
     const web3 = new Web3(window.ethereum)
+    await window.ethereum.enable()
     dispatch(web3Loaded(web3))
     return web3
   } else {
@@ -37,9 +38,9 @@ export const loadWeb3 = async (dispatch) => {
 }
 
 export const loadAccount = async (web3, dispatch) => {
-      //await web3.send('eth_requestAccounts')
-  const accounts = await window.ethereum.request({ method: 'eth_accounts' });
-  //const accounts = await web3.eth.getAccounts()
+  //not sure which one of these to use 1st is new 2nd is old
+  //const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+  const accounts = await web3.eth.getAccounts()
   const account = accounts[0]
   dispatch(web3AccountLoaded(account))
   return account
